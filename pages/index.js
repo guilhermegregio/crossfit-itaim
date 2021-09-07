@@ -50,7 +50,7 @@ const Rank = ({ athletes, athletesM, athletesF }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div style={{ background: 'black', marginBottom: '16px', padding: '16px' }}>
+      <div style={{ background: 'black', marginBottom: '16px', padding: '16px', width: '100%' }}>
         <Image src="/itaim-logo.png" width="160" height="147" alt="Crossfit Itaim" />
       </div>
 
@@ -126,6 +126,12 @@ export async function getStaticProps() {
   const a40m = await getRankByCategory(CATEGORIES[2]);
   const a45m = await getRankByCategory(CATEGORIES[3]);
   //const a50m = await getRankByCategory(CATEGORIES[4]);
+
+  const fabio = eliteM.find((a) => a.name === 'FABIO MARCIANO **');
+  const danilo = eliteM.find((a) => a.name === 'DANILO GOMES');
+
+  fabio.results = ['CAP+110', ...fabio.results];
+  danilo.results = ['CAP+57', ...danilo.results];
 
   //const teenF = await getRankByCategory(CATEGORIES[5]);
   const eliteF = await getRankByCategory(CATEGORIES[6]);
