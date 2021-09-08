@@ -107,6 +107,7 @@ const getRankByCategory = async ({ id, name }) => {
       name: athlete.team.name,
       category,
       results: athlete.results.map((r) => r.result),
+      raw: JSON.stringify(athlete, null, 2),
     };
   });
 
@@ -129,9 +130,12 @@ export async function getStaticProps() {
 
   const fabio = eliteM.find((a) => a.name === 'FABIO MARCIANO **');
   const danilo = eliteM.find((a) => a.name === 'DANILO GOMES');
+  const roberto = a45m.find((a) => a.name === 'ROBERTO COSTA');
+  const leonardo = a40m.find((a) => a.name === 'LEONARDO MESQUITA DA CRUZ');
 
   fabio.results = ['CAP+110', ...fabio.results];
   danilo.results = ['CAP+57', ...danilo.results];
+  leonardo.results = ['CAP+97', ...danilo.results];
 
   //const teenF = await getRankByCategory(CATEGORIES[5]);
   const eliteF = await getRankByCategory(CATEGORIES[6]);
