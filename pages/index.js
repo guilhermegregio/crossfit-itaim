@@ -18,13 +18,13 @@ const CATEGORIES = [
   //Male
   { name: 'TEEN', id: 2425 },
   { name: 'ELITE', id: 2418 },
-  { name: '40_45', id: 2427 },
+  { name: '40_44', id: 2427 },
   { name: '45_49', id: 2429 },
   { name: '50', id: 2431 },
   //Female
   { name: 'TEEN', id: 2426 },
   { name: 'ELITE', id: 2419 },
-  { name: '40_45', id: 2428 },
+  { name: '40_44', id: 2428 },
   { name: '45_49', id: 2430 },
   { name: '50+', id: 2433 },
 ];
@@ -139,7 +139,7 @@ export async function getStaticProps() {
 
   fabio.results = ['CAP+110', ...fabio.results];
   danilo.results = ['CAP+57', ...danilo.results];
-  leonardo.results = ['CAP+97', ...danilo.results];
+  leonardo.results = ['CAP+97', ...leonardo.results];
 
   //const teenF = await getRankByCategory(CATEGORIES[5]);
   const eliteF = await getRankByCategory(CATEGORIES[6]);
