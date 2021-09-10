@@ -68,6 +68,8 @@ const Rank = ({ athletes, athletesM, athletesF }) => {
             <Th>Nome</Th>
             <Th>Categoria</Th>
             <Th>Footloose</Th>
+            <Th>Dúzia</Th>
+            <Th>The Cub Complex</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -78,6 +80,8 @@ const Rank = ({ athletes, athletesM, athletesF }) => {
               <Td>{athlete.name}</Td>
               <Td>{athlete.category}</Td>
               <Td>{athlete.results[0] || '-'}</Td>
+              <Td>{athlete.results[1] || '-'}</Td>
+              <Td>{athlete.results[2] || '-'}</Td>
             </Tr>
           ))}
         </Tbody>
