@@ -132,20 +132,22 @@ export async function getStaticProps() {
   const a45m = await getRankByCategory(CATEGORIES[3]);
   //const a50m = await getRankByCategory(CATEGORIES[4]);
 
+  //const teenF = await getRankByCategory(CATEGORIES[5]);
+  const eliteF = await getRankByCategory(CATEGORIES[6]);
+  const a40f = await getRankByCategory(CATEGORIES[7]);
+  const a45f = await getRankByCategory(CATEGORIES[8]);
+  //const a50f = await getRankByCategory(CATEGORIES[9]);
+
   const fabio = eliteM.find((a) => a.name === 'FABIO MARCIANO **');
   const danilo = eliteM.find((a) => a.name === 'DANILO GOMES');
+  const juliana = eliteF.find((a) => a.name === 'JULIANA BITENCOURT **');
   const roberto = a45m.find((a) => a.name === 'ROBERTO COSTA');
   const leonardo = a40m.find((a) => a.name === 'LEONARDO MESQUITA DA CRUZ');
 
   fabio.results = ['CAP+110', ...fabio.results];
   danilo.results = ['CAP+57', ...danilo.results];
   leonardo.results = ['CAP+97', ...leonardo.results];
-
-  //const teenF = await getRankByCategory(CATEGORIES[5]);
-  const eliteF = await getRankByCategory(CATEGORIES[6]);
-  const a40f = await getRankByCategory(CATEGORIES[7]);
-  const a45f = await getRankByCategory(CATEGORIES[8]);
-  //const a50f = await getRankByCategory(CATEGORIES[9]);
+  juliana.results = ['CAP+170', ...juliana.results];
 
   const athletesM = [...eliteM, ...a40m, ...a45m].sort(sortProva1);
   const athletesF = [...eliteF, ...a40f, ...a45f].sort(sortProva1);
