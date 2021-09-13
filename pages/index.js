@@ -118,11 +118,44 @@ const getRankByCategory = async ({ id, name }) => {
   return athletes;
 };
 
+const sortPontos = (a, b) => {
+  const v1 = a.pontos;
+  const v2 = b.pontos;
+
+  return v1 - v2;
+};
+
 const sortProva1 = (a, b) => {
   const v1 = (a.results[0] || '1000000').replace('CAP+', '100').replace(':', '');
   const v2 = (b.results[0] || '1000000').replace('CAP+', '100').replace(':', '');
 
   return v1 - v2;
+};
+
+const sortProva2 = (a, b) => {
+  const v1 = a.results[1] || '0';
+  const v2 = b.results[1] || '0';
+
+  return v2 - v1;
+};
+
+const sortProva3 = (a, b) => {
+  const v1 = a.results[2] || '0';
+  const v2 = b.results[2] || '0';
+
+  return v2 - v1;
+};
+
+const rank = (arr) => {
+  return arr
+    .map((a) => ({ ...a, pontos: 1 }))
+    .sort(sortProva1)
+    .map((a, i) => ({ ...a, pontos: a.pontos + i }))
+    .sort(sortProva2)
+    .map((a, i) => ({ ...a, pontos: a.pontos + i }))
+    .sort(sortProva3)
+    .map((a, i) => ({ ...a, pontos: a.pontos + i }))
+    .sort(sortPontos);
 };
 
 export async function getStaticProps() {
@@ -149,9 +182,9 @@ export async function getStaticProps() {
   leonardo.results = ['CAP+97', ...leonardo.results];
   juliana.results = ['CAP+170', ...juliana.results];
 
-  const athletesM = [...eliteM, ...a40m, ...a45m].sort(sortProva1);
-  const athletesF = [...eliteF, ...a40f, ...a45f].sort(sortProva1);
-  const athletes = [...athletesM, ...athletesF].sort(sortProva1);
+  const athletesM = rank([...eliteM, ...a40m, ...a45m]);
+  const athletesF = rank([...eliteF, ...a40f, ...a45f]);
+  const athletes = rank([...athletesM, ...athletesF]);
 
   return {
     props: {
