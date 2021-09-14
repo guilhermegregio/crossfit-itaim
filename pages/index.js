@@ -150,13 +150,13 @@ const sortProva3 = (a, b) => {
 
 const rank = (arr) => {
   return arr
-    .map((a) => ({ ...a, pontos: 1 }))
+    .map((a) => ({ ...a, pontos: 0 }))
     .sort(sortProva1)
-    .map((a, i) => ({ ...a, pontos: a.pontos + i }))
+    .map((a, i) => ({ ...a, pontos: a.pontos + i + 1 }))
     .sort(sortProva2)
-    .map((a, i) => ({ ...a, pontos: a.pontos + i }))
+    .map((a, i) => ({ ...a, pontos: a.pontos + i + 1 }))
     .sort(sortProva3)
-    .map((a, i) => ({ ...a, pontos: a.pontos + i }))
+    .map((a, i) => ({ ...a, pontos: a.pontos + i + 1 }))
     .sort(sortPontos);
 };
 
