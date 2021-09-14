@@ -29,13 +29,15 @@ const CATEGORIES = [
   { name: '50+', id: 2433 },
 ];
 
-const Rank = ({ athletes, athletesM, athletesF, eliteM }) => {
-  const [gender, setGender] = React.useState('ALLL');
-  const [list, setList] = React.useState(eliteM);
+const Rank = ({ athletes, athletesM, athletesF, eliteM, master }) => {
+  const [gender, setGender] = React.useState('master');
+  const [list, setList] = React.useState(master);
 
   React.useEffect(() => {
-    if (gender === 'ALLL') {
+    if (gender === 'elite') {
       setList(eliteM);
+    } else if (gender === 'master') {
+      setList(master);
     } else if (gender === 'ALL') {
       setList(athletes);
     } else if (gender === 'M') {
@@ -140,16 +142,6 @@ export async function getStaticProps() {
   const a45m = await getRankByCategory(CATEGORIES[3]);
   //const a50m = await getRankByCategory(CATEGORIES[4]);
 
-  const fabio = eliteM.find((a) => a.name === 'FABIO MARCIANO **');
-  const danilo = eliteM.find((a) => a.name === 'DANILO GOMES');
-  const roberto = a45m.find((a) => a.name === 'ROBERTO COSTA');
-  const leonardo = a40m.find((a) => a.name === 'LEONARDO MESQUITA DA CRUZ');
-
-  fabio.results = ['CAP+110', ...fabio.results];
-  danilo.results = ['CAP+57', ...danilo.results];
-  danilo.rank = danilo.rank || 505;
-  leonardo.results = ['CAP+97', ...danilo.results];
-
   //const teenF = await getRankByCategory(CATEGORIES[5]);
   const eliteF = await getRankByCategory(CATEGORIES[6]);
   const a40f = await getRankByCategory(CATEGORIES[7]);
@@ -162,7 +154,8 @@ export async function getStaticProps() {
 
   return {
     props: {
-      eliteM: eliteM.sort(sortProva1),
+      eliteM: eliteM,
+      master: eliteM.filter((a) => a.name.includes('*')),
       athletes,
       athletesM,
       athletesF,
