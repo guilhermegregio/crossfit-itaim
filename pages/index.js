@@ -65,6 +65,7 @@ const Rank = ({ athletes, athletesM, athletesF }) => {
           <Tr>
             <Th>Rank</Th>
             <Th>Rank Geral</Th>
+            <Th>Pontos</Th>
             <Th>Nome</Th>
             <Th>Categoria</Th>
             <Th>Footloose</Th>
@@ -77,6 +78,7 @@ const Rank = ({ athletes, athletesM, athletesF }) => {
             <Tr key={athlete.name}>
               <Td>{index + 1}</Td>
               <Td>{athlete.rank || '-'}</Td>
+              <Td>{athlete.pontos || '-'}</Td>
               <Td>{athlete.name}</Td>
               <Td>{athlete.category}</Td>
               <Td>{athlete.results[0] || '-'}</Td>
