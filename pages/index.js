@@ -140,8 +140,8 @@ const sortProva2 = (a, b) => {
 };
 
 const sortProva3 = (a, b) => {
-  const v1 = a.results[2] || '0';
-  const v2 = b.results[2] || '0';
+  const v1 = a.prova3 || '0';
+  const v2 = b.prova3 || '0';
 
   return v2 - v1;
 };
@@ -156,6 +156,10 @@ const rank = (arr) => {
     .sort(sortProva3)
     .map((a, i) => ({ ...a, pontos: a.pontos + i }))
     .sort(sortPontos);
+};
+
+const reduceWeight = (percent, arr) => {
+  return arr.map((a) => ({ ...a, prova3: a.results[2] * percent }));
 };
 
 export async function getStaticProps() {
@@ -173,17 +177,22 @@ export async function getStaticProps() {
 
   const fabio = eliteM.find((a) => a.name === 'FABIO MARCIANO **');
   const danilo = eliteM.find((a) => a.name === 'DANILO GOMES');
+  const renan = eliteM.find((a) => a.name === 'RENAN MEDEIROS');
   const juliana = eliteF.find((a) => a.name === 'JULIANA BITENCOURT **');
   const roberto = a45m.find((a) => a.name === 'ROBERTO COSTA');
   const leonardo = a40m.find((a) => a.name === 'LEONARDO MESQUITA DA CRUZ');
 
   fabio.results = ['CAP+110', ...fabio.results];
-  danilo.results = ['CAP+57', ...danilo.results];
+  danilo.results = ['CAP+57', 123, 84, ...danilo.results];
+
+  const [renanProva1, ...renanResults] = renan.results;
+  renan.results = [renanProva1, 126, 20.5, ...renanResults];
+
   leonardo.results = ['CAP+97', ...leonardo.results];
   juliana.results = ['CAP+170', ...juliana.results];
 
-  const athletesM = rank([...eliteM, ...a40m, ...a45m]);
-  const athletesF = rank([...eliteF, ...a40f, ...a45f]);
+  const athletesM = rank(reduceWeight(0.62, [...eliteM, ...a40m, ...a45m]));
+  const athletesF = rank(reduceWeight(1, [...eliteF, ...a40f, ...a45f]));
   const athletes = rank([...athletesM, ...athletesF]);
 
   return {
