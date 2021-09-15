@@ -190,7 +190,7 @@ export async function getStaticProps() {
   const [renanProva1, ...renanResults] = renan.results;
   renan.results = [renanProva1, 126, 20.5, ...renanResults];
 
-  leonardo.results = ['CAP+97', ...leonardo.results];
+  leonardo.results = ['CAP+97', 123, 65, ...leonardo.results];
   juliana.results = ['CAP+170', ...juliana.results];
 
   const athletesM = rank(reduceWeight(0.62, [...eliteM, ...a40m, ...a45m]));
