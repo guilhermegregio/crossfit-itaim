@@ -151,8 +151,8 @@ const sortProva3 = (a, b) => {
 };
 
 const sortProva4 = (a, b) => {
-  const v1 = (a.results[0] || '1000000').replace('CAP+', '100').replace(':', '');
-  const v2 = (b.results[0] || '1000000').replace('CAP+', '100').replace(':', '');
+  const v1 = (a.results[3] || '10000000').replace('CAP+', '1000').replace(':', '');
+  const v2 = (b.results[3] || '10000000').replace('CAP+', '1000').replace(':', '');
 
   return v1 - v2;
 };
