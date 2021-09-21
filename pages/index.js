@@ -82,10 +82,22 @@ const Rank = ({ athletes, athletesM, athletesF }) => {
               <Td>{athlete.pontos || '-'}</Td>
               <Td>{athlete.name}</Td>
               <Td>{athlete.category}</Td>
-              <Td>{athlete.results[0] || '-'}</Td>
-              <Td>{athlete.results[1] || '-'}</Td>
-              <Td>{athlete.results[2] || '-'}</Td>
-              <Td>{athlete.results[3] || '-'}</Td>
+              <Td textAlign="center">
+                {athlete.pt1}
+                <br />({athlete.results[0] || '-'})
+              </Td>
+              <Td textAlign="center">
+                {athlete.pt2}
+                <br />({athlete.results[1] || '-'})
+              </Td>
+              <Td textAlign="center">
+                {athlete.pt3}
+                <br />({athlete.results[2] || '-'})
+              </Td>
+              <Td textAlign="center">
+                {athlete.pt4}
+                <br />({athlete.results[3] || '-'})
+              </Td>
             </Tr>
           ))}
         </Tbody>
@@ -137,15 +149,15 @@ const sortProva1 = (a, b) => {
 };
 
 const sortProva2 = (a, b) => {
-  const v1 = a.results[1] || '0';
-  const v2 = b.results[1] || '0';
+  const v1 = a.results[1] || '-1';
+  const v2 = b.results[1] || '-1';
 
   return v2 - v1;
 };
 
 const sortProva3 = (a, b) => {
-  const v1 = a.prova3 || '0';
-  const v2 = b.prova3 || '0';
+  const v1 = a.prova3 || '-1';
+  const v2 = b.prova3 || '-1';
 
   return v2 - v1;
 };
@@ -159,15 +171,19 @@ const sortProva4 = (a, b) => {
 
 const rank = (arr) => {
   return arr
-    .map((a) => ({ ...a, pontos: 0 }))
+    .map((a) => ({ ...a, pontos: 0, pt1: 0, pt2: 0, pt3: 0, pt4: 0, pt5: 0 }))
     .sort(sortProva1)
     .map((a, i) => ({ ...a, pontos: a.pontos + i + 1 }))
+    .map((a, i) => ({ ...a, pt1: a.pt1 + i + 1 }))
     .sort(sortProva2)
     .map((a, i) => ({ ...a, pontos: a.pontos + i + 1 }))
+    .map((a, i) => ({ ...a, pt2: a.pt2 + i + 1 }))
     .sort(sortProva3)
     .map((a, i) => ({ ...a, pontos: a.pontos + i + 1 }))
+    .map((a, i) => ({ ...a, pt3: a.pt3 + i + 1 }))
     .sort(sortProva4)
     .map((a, i) => ({ ...a, pontos: a.pontos + i + 1 }))
+    .map((a, i) => ({ ...a, pt4: a.pt4 + i + 1 }))
     .sort(sortPontos);
 };
 
