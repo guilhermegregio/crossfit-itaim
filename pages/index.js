@@ -205,6 +205,7 @@ export async function getStaticProps() {
   //const a50f = await getRankByCategory(CATEGORIES[9]);
 
   const fabio = eliteM.find((a) => a.name === 'FABIO MARCIANO **');
+  const calvin = eliteM.find((a) => a.name === 'VICTOR HUGO CALVIN ');
   const danilo = eliteM.find((a) => a.name === 'DANILO GOMES');
   const renan = eliteM.find((a) => a.name === 'RENAN MEDEIROS');
   const juliana = eliteF.find((a) => a.name === 'JULIANA BITENCOURT **');
@@ -213,6 +214,9 @@ export async function getStaticProps() {
 
   fabio.results = ['CAP+110', ...fabio.results];
   danilo.results = ['CAP+57', 123, 84, 'CAP+9', ...danilo.results];
+
+  const [calvinProva1, calvinProva2, calvinProva3, ...calvinResults] = calvin.results;
+  calvin.results = [calvinProva1, calvinProva2, calvinProva3, '12:41', ...calvinResults];
 
   const [renanProva1, ...renanResults] = renan.results;
   renan.results = [renanProva1, 126, 20.5, 'CAP+9', ...renanResults];
