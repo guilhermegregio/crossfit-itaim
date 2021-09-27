@@ -72,6 +72,7 @@ const Rank = ({ athletes, athletesM, athletesF }) => {
             <Th>Dúzia</Th>
             <Th>The Cub Complex</Th>
             <Th>Penrose</Th>
+            <Th>Buster</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -97,6 +98,10 @@ const Rank = ({ athletes, athletesM, athletesF }) => {
               <Td textAlign="center">
                 {athlete.pt4}
                 <br />({athlete.results[3] || '-'})
+              </Td>
+              <Td textAlign="center">
+                {athlete.pt5}
+                <br />({athlete.results[4] || '-'})
               </Td>
             </Tr>
           ))}
@@ -169,6 +174,13 @@ const sortProva4 = (a, b) => {
   return v1 - v2;
 };
 
+const sortProva5 = (a, b) => {
+  const v1 = (a.results[4] || '10000000').replace('CAP+', '1000').replace(':', '');
+  const v2 = (b.results[4] || '10000000').replace('CAP+', '1000').replace(':', '');
+
+  return v1 - v2;
+};
+
 const rank = (arr) => {
   return arr
     .map((a) => ({ ...a, pontos: 0, pt1: 0, pt2: 0, pt3: 0, pt4: 0, pt5: 0 }))
@@ -184,6 +196,9 @@ const rank = (arr) => {
     .sort(sortProva4)
     .map((a, i) => ({ ...a, pontos: a.pontos + i + 1 }))
     .map((a, i) => ({ ...a, pt4: a.pt4 + i + 1 }))
+    .sort(sortProva5)
+    .map((a, i) => ({ ...a, pontos: a.pontos + i + 1 }))
+    .map((a, i) => ({ ...a, pt5: a.pt5 + i + 1 }))
     .sort(sortPontos);
 };
 
