@@ -220,6 +220,7 @@ export async function getStaticProps() {
   //const a50f = await getRankByCategory(CATEGORIES[9]);
 
   const fabio = eliteM.find((a) => a.name === 'FABIO MARCIANO **');
+  const felippe = eliteM.find((a) => a.name === 'FELIPPE NORIMATSU **');
   const calvin = eliteM.find((a) => a.name === 'VICTOR HUGO CALVIN ');
   const danilo = eliteM.find((a) => a.name === 'DANILO GOMES');
   const renan = eliteM.find((a) => a.name === 'RENAN MEDEIROS');
@@ -227,16 +228,18 @@ export async function getStaticProps() {
   const roberto = a45m.find((a) => a.name === 'ROBERTO COSTA');
   const leonardo = a40m.find((a) => a.name === 'LEONARDO MESQUITA DA CRUZ');
 
+  const [felippe1, felippe2, felippe3, ...felippeResults] = felippe.results;
+  felippe.results = [felippe1, felippe2, felippe3, '', ...felippeResults];
   fabio.results = ['CAP+110', ...fabio.results];
-  danilo.results = ['CAP+57', 123, 84, 'CAP+9', ...danilo.results];
+  danilo.results = ['CAP+57', 123, 84, 'CAP+9', 'CAP+15', ...danilo.results];
 
   const [calvinProva1, calvinProva2, calvinProva3, ...calvinResults] = calvin.results;
   calvin.results = [calvinProva1, calvinProva2, calvinProva3, '12:41', ...calvinResults];
 
   const [renanProva1, ...renanResults] = renan.results;
-  renan.results = [renanProva1, 126, 20.5, 'CAP+9', ...renanResults];
+  renan.results = [renanProva1, 126, 20.5, 'CAP+9', 'CAP+30', ...renanResults];
 
-  leonardo.results = ['CAP+97', 123, 65, 'CAP+6', ...leonardo.results];
+  leonardo.results = ['CAP+97', 123, 65, 'CAP+6', '11:54', ...leonardo.results];
   juliana.results = ['CAP+170', ...juliana.results];
 
   const athletesM = rank(reduceWeight(0.62, [...eliteM, ...a40m, ...a45m]));
